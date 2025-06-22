@@ -17,7 +17,8 @@ class TestimonialResource extends Resource
 {
     protected static ?string $model = Testimonial::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationGroup = 'Boarding House Management';
+    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-right';
 
     public static function form(Form $form): Form
     {
@@ -31,6 +32,9 @@ class TestimonialResource extends Resource
                 Forms\Components\Select::make('boarding_house_id')
                 ->relationship('boardingHouse', 'name')
                 ->columnSpan(2)
+                ->required(),
+                Forms\Components\Textarea::make('content')
+                    ->columnSpan(2)
                 ->required(),
                 Forms\Components\TextInput::make('name')
                 ->required()
@@ -49,13 +53,19 @@ class TestimonialResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\ImageColumn::make('photo'),
+                Tables\Columns\TextColumn::make('boardingHouse.name'),
+                Tables\Columns\TextColumn::make('name')->searchable(),
+                Tables\Columns\TextColumn::make('content'),
+                Tables\Columns\TextColumn::make('rating'),
             ])
             ->filters([
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
