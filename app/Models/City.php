@@ -12,7 +12,7 @@ class City extends Model
     public $incrementing = true;
     protected $keyType = "int";
     protected $primaryKey = "id";
-    protected $fillable = ['name', 'image', 'slug'];
+    protected $fillable = ['name', 'images', 'slug'];
 
     public function boardingHouses(): HasMany
     {

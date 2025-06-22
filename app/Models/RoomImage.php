@@ -12,7 +12,7 @@ class RoomImage extends Model
     public $incrementing = true;
     protected $keyType = "int";
     protected $primaryKey = "id";
-    protected $fillable = ['room_id', 'image'];
+    protected $fillable = ['room_id', 'images'];
 
     public function room(): BelongsTo
     {
