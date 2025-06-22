@@ -23,9 +23,4 @@ class Testimonial extends Model
     {
         return $this->belongsTo(BoardingHouse::class, 'boarding_house_id', 'id');
     }
-
-    public function room(): BelongsTo
-    {
-        return $this->belongsTo(Room::class, 'room_id', 'id');
-    }
 }

@@ -14,7 +14,8 @@ class Room extends Model
     protected $keyType = "int";
     protected $primaryKey = "id";
     protected $fillable = [
-        'name', 'room_type', 'boarding_house_id', 'square_feet', 'price_per_month', 'is_available'
+        'name', 'room_type', 'boarding_house_id', 'square_feet', 'price_per_month', 'is_available',
+        'capacity'
     ];
 
     public function boardingHouse(): BelongsTo
@@ -22,7 +23,7 @@ class Room extends Model
         return $this->belongsTo(BoardingHouse::class, 'boarding_house_id', 'id');
     }
 
-    public function roomImages(): HasMany
+    public function images(): HasMany
     {
         return $this->hasMany(RoomImage::class, 'room_id', 'id');
     }
